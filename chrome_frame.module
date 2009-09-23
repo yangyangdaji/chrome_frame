@@ -27,6 +27,16 @@ function chrome_frame_menu() {
  */
 function chrome_frame_settings() {
   $form = array();
+  $form['chrome_frame_prompt'] = array(
+    '#title' => t('Prompt the user to install Chrome Frame?'),
+    '#type' => 'radios',
+    '#options' => array(
+      0 => t('Don\'t Prompt'),
+      1 => t('IE 6 only'),
+      2 => t('Prompt for all versions of IE')
+    ),
+    '#default_value' => variable_get('chrome_frame_prompt', 0),
+  );
   return system_settings_form($form);
 }
 
@@ -43,12 +53,32 @@ function chrome_frame_init() {
  * Implements hook_footer().
  */
 function chrome_frame_footer($main = 0) {
-  return '
-<div id="chrome_frame"></div>
+  switch (variable_get('chrome_frame_prompt', 0)) {
+    case 2:
+      // always prompt
+      return '<div id="chrome_frame"></div>
 <script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js" type="text/javascript"></script>
 <script type="text/javascript">
     CFInstall.check({
       node: "chrome_frame"
     });
 </script>';
+      break;
+    case 1:
+      // prompt only for IE 6
+      return '<div id="chrome_frame"></div>
+<!--[if lte IE 6]>
+<script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    CFInstall.check({
+      node: "chrome_frame"
+    });
+</script>
+<![endif]-->';
+      break;
+    case 0:
+      // don't prompt to install plugin
+      break;
+  }
+  
 }
