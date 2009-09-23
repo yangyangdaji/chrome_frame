@@ -37,45 +37,11 @@ function chrome_frame_settings() {
  */
 function chrome_frame_init() {
   drupal_set_html_head('<meta http-equiv="X-UA-Compatible" content="chrome=1">');
-  //drupal_add_js('http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js', 'module');
-  /*
-  drupal_add_js('
-    $(document).ready(function(){
-      CFInstall.check({
-        mode: "popup",
-      });
-    });
-  ',
-  'inline');
-  */
 }
 
 /**
- * Implementation of template_preprocess_page().
+ * Implements hook_footer().
  */
-function chrome_frame_preprocess_page(&$vars) {
-  /*
-  //$temp_arr = explode(">", $vars['scripts']);
-  drupal_set_message('$temp_arr = <pre>'. print_r($temp_arr, TRUE) .'</pre>');
-  $vars['scripts'] = array();
-  $vars['scripts'][] = array_slice($temp_arr, 0, 1);
-  drupal_set_message('$vars[scripts] = <pre>'. print_r($vars['scripts'], TRUE) .'</pre>');
-  //$vars['scripts'][] = '<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">';
-  //$vars['scripts'] = array_merge($vars['scripts'], array_slice($temp_arr, 1));
-  //$vars['scripts'] = implode("\n", $vars['scripts']);
-  drupal_set_message('$vars[scripts] = <pre>'. print_r($vars['scripts'], TRUE) .'</pre>');
-  //$vars['scripts'] = '<script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js" type="text/javascript">' . "\n" . $vars['scripts'];
-  /**//*
-  $vars['scripts'] .= '<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
-<script type="text/javascript">
-  <!--//--><![CDATA[//><!--
-    CFInstall.check();
-  //--><!]]>
-</script>';/**/
-}
-
-
-
 function chrome_frame_footer($main = 0) {
   return '
 <div id="chrome_frame"></div>
