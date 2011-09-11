@@ -17,7 +17,8 @@ function chrome_frame_settings() {
     '#options' => array(
       0 => t('Don\'t Prompt'),
       1 => t('IE 6 only'),
-      2 => t('Prompt for all versions of IE')
+      2 => t('Prompt for all versions of IE'),
+      3 => t('Prompt for all versions of IE except IE9')
     ),
     '#default_value' => variable_get('chrome_frame_prompt', 0),
   );
