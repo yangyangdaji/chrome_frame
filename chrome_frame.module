@@ -42,6 +42,28 @@ function chrome_frame_footer($main = 0) {
   ));
 
   switch (variable_get('chrome_frame_prompt', 0)) {
+    case 4:
+      // Prompt for IE 6 and 7
+      return '<div id="chrome-frame"></div>
+<!--[if lte IE 7]>
+<script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    CFInstall.check('. $options .');
+</script>
+<![endif]-->';
+      break;
+    
+    case 3: 
+      // Prompt for IE 6, 7 and 8
+      return '<div id="chrome-frame"></div>
+<!--[if lte IE 8]>
+<script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    CFInstall.check('. $options .');
+</script>
+<![endif]-->';
+      break;
+    
     case 2:
       // Always prompt.
       return '<div id="chrome-frame"></div>
