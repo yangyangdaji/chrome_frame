@@ -1,4 +1,4 @@
 name = Chrome Frame
 description = Provide integration with Google Chrome Frame
 core = 7.x
-configure = admin/config/chrome_frame
+configure = admin/config/services/chrome_frame

@@ -15,10 +15,11 @@ function chrome_frame_settings() {
     '#description' => t('Should Chrome Frame prompt installation on IE users?'),
     '#type' => 'radios',
     '#options' => array(
-      0 => t('Don\'t Prompt'),
-      1 => t('IE 6 only'),
-      2 => t('Prompt for all versions of IE'),
-      3 => t('Prompt for all versions of IE except IE9')
+      'disabled' => t('Don\'t Prompt'),
+      'ie6orless' => t('IE 6 only'),
+      'ie7orless' => t('IE 7 or lower'),
+      'ie8orless' => t('IE 8 or lower'),
+      'all' => t('Prompt for all versions of IE'),
     ),
     '#default_value' => variable_get('chrome_frame_prompt', 0),
   );
@@ -27,9 +28,10 @@ function chrome_frame_settings() {
     '#type' => 'select',
     '#options' => array(
       'inline' => t('Inline'),
+      'overlay' => t('Overlay'),
       'popup' => t('Popup'),
     ),
-    '#description' => t('How the user should be prompted when Google Chrome Frame is missing. Using a Popup will result in creating a new window for the prompt.'),
+    '#description' => t('How the user should be prompted when Google Chrome Frame is missing. Overlay will display a modal dialog. Using a Popup will result in creating a new window for the prompt.'),
     '#default_value' => variable_get('chrome_frame_mode', 'inline'),
   );
   return system_settings_form($form);
